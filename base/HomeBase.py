@@ -31,3 +31,10 @@ class HomeBase:
         :return:
         '''
         return "//div[text()='我的日历']/following-sibling::div"
+
+    def home_user_avatar(self):
+        '''
+        定位首页头像大图
+        :return:
+        '''
+        return "//span[contains(text(),'欢迎您回来')]/parent::div/preceding-sibling::div//img"
