@@ -2,7 +2,7 @@
 
 import time
 
-from selenium.common.exceptions import ElementNotVisibleException, WebDriverException
+from selenium.common.exceptions import ElementNotVisibleException, WebDriverException,NoSuchElementException
 
 from common.yaml_conffig import GetConf
 class ObjectMar:
@@ -168,9 +168,24 @@ class ObjectMar:
                 self.element_appear(
                     driver,
                     locate_type_appear,
-                    locator_expression_appear
+                    locator_expression_appear 
                 )
             except Exception as e:
                 print("跳转地址出现异常，异常原因：%s" % e)
                 return False
             return True
+
+    def element_is_display(self,driver,locate_type,locator_expression):
+        '''
+        元素是否显示
+        :param driver:
+        :param locate_type:
+        :param locator_expression:
+        :return:
+        '''
+        try:
+            driver.find_element(by=locate_type,value=locator_expression)
+            return True
+        except NoSuchElementException:
+            # 发生了NoSuchElementException异常，说明页面中未找到该元素，返回False
+            return False
