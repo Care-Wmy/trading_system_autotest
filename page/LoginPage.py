@@ -1,9 +1,13 @@
 # 开发时间：2023/3/2 22:51
 
+from selenium.webdriver.common.by import By
 from base.loginBase import LoginBase
+from base.ObjectMap import ObjectMap
 
-class LonginPage(LoginBase):
-    def login_input_value(self, driver,input_placeholder,input_value):
+from common.yaml_conffig import GetConf
+
+class LonginPage(LoginBase, ObjectMap):
+    def login_input_value(self, driver, input_placeholder, input_value):
         '''
         登录页输入值
         :param driver:
@@ -12,9 +16,10 @@ class LonginPage(LoginBase):
         :return:
         '''
         input_xpath = self.login_input(input_placeholder)
-        return driver.find_element_by_xpath(input_xpath).send_keys(input_value)
+        # return driver.find_element_by_xpath(input_xpath).send_keys(input_value)
+        return self.element_fill_value(driver, By.XPATH, input_xpath, input_value)
 
-    def click_login(self,driver,button_name):
+    def click_login(self, driver, button_name):
         '''
         点击登录
         :param driver:
@@ -22,4 +27,18 @@ class LonginPage(LoginBase):
         :return:
         '''
         button_xpath = self.login_button(button_name)
-        return driver.find_element_by_xpath(button_xpath).click()
+        # return driver.find_element_by_xpath(button_xpath).click()
+        return self.element_click(driver, By.XPATH, button_xpath)
+
+    def login(self,driver,user):
+        '''
+        登录
+        :param driver:
+        :param user:
+        :return:
+        '''
+        self.element_to_url(driver,"/login")
+        username,password = GetConf().get_username_password(user)
+        self.login_input_value(driver,"用户名",username)
+        self.login_input_value(driver, "密码", password)
+        self.click_login(driver,"登录")

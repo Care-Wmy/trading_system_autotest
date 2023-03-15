@@ -9,7 +9,7 @@ from common.yaml_conffig import GetConf
 from selenium.webdriver.common.keys import Keys
 
 
-class ObjectMar:
+class ObjectMap:
     # 获取基本地址
     url = GetConf().get_url()
 
