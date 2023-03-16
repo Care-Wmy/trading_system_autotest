@@ -10,8 +10,8 @@ def get_project_path():
     project_name = "trading_system_autotest"
     file_path = os.path.dirname(__file__)
     print(file_path)
-    a=file_path[:file_path.find(project_name) + len(project_name)]
-    print(a+'2')
+    a = file_path[:file_path.find(project_name) + len(project_name)]
+    print(a + '2')
     return a
 
 
@@ -34,8 +34,18 @@ def sep(path, add_sep_before=False, add_sep_after=True):
     return all_path
 
 
+def get_img_path(img_name):
+    '''
+    获取商品图片的路径
+    :param img_name:
+    :return:
+    '''
+
+    # img_dir_path = get_project_path() + sep(["img" + img_name],add_sep_before=True)
+    return "/code/trading_system_autotest/img/" + img_name
+
 
 if __name__ == '__main__':
-    get_project_path()
+    # get_project_path()
     # sep(["config", "environment.yaml"], add_sep_before=True)
-
+    print(get_img_path("hhh.jpg"))
