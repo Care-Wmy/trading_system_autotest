@@ -341,3 +341,13 @@ class ObjectMap:
         '''
         element = self.element_get(driver, locata_type, locator_expression)
         return element.send_keys(file_path)
+
+    def switch_window_2_latest_handle(self, driver):
+        '''
+        句柄切换窗口到最新的窗口
+        :param driver:
+        :return:
+        '''
+        # 获取所有的窗口
+        window_handles = driver.window_handles
+        driver.switch_to_window(window_handles[-1])
