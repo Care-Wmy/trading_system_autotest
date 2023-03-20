@@ -6,11 +6,16 @@ from config.driver_config import DriverConfig
 from page.LoginPage import LonginPage
 from page.LeftMenuPage import LeftMenuPage
 from page.GoodsPage import GoodsPage
-
+import pytest
 
 class TestAddGoods:
-    def test_add_goods_001(self):
-        driver = DriverConfig().driver_config()
+    @pytest.fixture()
+    def driver(self):
+        getdriver = DriverConfig().driver_config()
+        yield getdriver
+        getdriver.quit()
+    def test_add_goods_001(self,driver):
+        # driver = DriverConfig().driver_config()
         # 登录
         LonginPage().login(driver, "jay")
         # 点击一级菜单
@@ -30,4 +35,3 @@ class TestAddGoods:
             bottom_button_name="提交"
         )
         sleep(3)
-        driver.quit()
