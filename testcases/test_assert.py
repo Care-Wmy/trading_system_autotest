@@ -1,8 +1,16 @@
 # 开发时间：2023/3/20 20:34
 
+import pytest
+from pytest_assume.plugin import assume
+
 
 class TestAssert:
     def test_assert(self):
+        with assume: assert 'aaa' in 'bbb'
+        pytest.assume(1 + 1 == 3)
+        assert 1 + 1 == 2
+        print("完了")
+        '''
         # == 、 != 、< 、> 、<= 、>=
         assert "aaa" == "aaa"
         assert "aaa" != "aaa"
@@ -17,3 +25,4 @@ class TestAssert:
         assert 1
         assert (9 < 10) is True
         assert not False
+        '''
