@@ -10,8 +10,8 @@ from page.LoginPage import LonginPage
 
 class TestWindowHandel:
 
-    def test_switch_window_handles(self):
-        driver = DriverConfig().driver_config()
+    def test_switch_window_handles(self,driver):
+        # driver = DriverConfig().driver_config()
         LonginPage().login(driver, "jay")
         sleep(3)
         # 点击一级菜单外链
@@ -20,4 +20,4 @@ class TestWindowHandel:
         # 切换句柄
         title = ExternalLinkPage().goto_imooc(driver)
         print("title", title)
-        driver.quit()
+        # driver.quit()

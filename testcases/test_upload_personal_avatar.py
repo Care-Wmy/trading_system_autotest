@@ -8,8 +8,8 @@ from page.LoginPage import LonginPage
 
 class TestPersonalInfo:
 
-    def test_upload_personal_avatar(self):
-        driver = DriverConfig().driver_config()
+    def test_upload_personal_avatar(self,driver):
+        # driver = DriverConfig().driver_config()
         LonginPage().login(driver,"william")
         LeftMenuPage().click_level_one_menu(driver,"账户设置")
         sleep(1)
@@ -19,5 +19,5 @@ class TestPersonalInfo:
         sleep(3)
         AccountPage().click_save(driver)
         sleep(3)
-        driver.quit()
+        # driver.quit()
 

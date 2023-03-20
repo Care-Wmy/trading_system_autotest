@@ -7,9 +7,9 @@ from page.LoginPage import LonginPage
 
 class TestLogin:
 
-    def test_login(self):
-        driver = DriverConfig().driver_config()
+    def test_login(self,driver):
+        # driver = DriverConfig().driver_config()
         LonginPage().login(driver,"jay")
         sleep(3)
         # # 退出浏览器
-        driver.quit()
+        # driver.quit()

@@ -10,8 +10,8 @@ from page.OrderPage import OrderPage
 
 
 class TestOrderBuy:
-    def test_order_buy(self):
-        driver = DriverConfig().driver_config()
+    def test_order_buy(self,driver):
+        # driver = DriverConfig().driver_config()
         LonginPage().login(driver, "jay")
         LeftMenuPage().click_level_one_menu(driver, "我的订单")
         sleep(1)
@@ -21,4 +21,4 @@ class TestOrderBuy:
         for tab in tab_list:
             OrderPage().click_order_tab(driver, tab)
             sleep(2)
-        driver.quit()
+        # driver.quit()
