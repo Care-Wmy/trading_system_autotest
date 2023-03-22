@@ -11,6 +11,7 @@ from common.report_add_img import add_img_2_report
 
 class TestWindowHandel:
     @allure.description("窗口句柄测试")
+    # allurl功能菜单中显示
     @allure.epic("窗口句柄一级目录")
     @allure.feature("窗口句柄二级目录")
     @allure.story("窗口句柄三级目录")
