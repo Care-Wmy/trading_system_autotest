@@ -6,6 +6,7 @@ from base.ObjectMap import ObjectMap
 
 from common.yaml_conffig import GetConf
 
+
 class LonginPage(LoginBase, ObjectMap):
     def login_input_value(self, driver, input_placeholder, input_value):
         '''
@@ -30,15 +31,24 @@ class LonginPage(LoginBase, ObjectMap):
         # return driver.find_element_by_xpath(button_xpath).click()
         return self.element_click(driver, By.XPATH, button_xpath)
 
-    def login(self,driver,user):
+    def login(self, driver, user):
         '''
         登录
         :param driver:
         :param user:
         :return:
         '''
-        self.element_to_url(driver,"/login")
-        username,password = GetConf().get_username_password(user)
-        self.login_input_value(driver,"用户名",username)
+        self.element_to_url(driver, "/login")
+        username, password = GetConf().get_username_password(user)
+        self.login_input_value(driver, "用户名", username)
         self.login_input_value(driver, "密码", password)
-        self.click_login(driver,"登录")
+        self.click_login(driver, "登录")
+
+    def login_assert(self, driver, img_name):
+        '''
+        登录后判断头像
+        :param driver:
+        :param img_name:
+        :return:
+        '''
+        return self.find_img_in_source(driver, img_name)
