@@ -2,14 +2,21 @@
 
 from time import sleep
 
+import allure
+import pytest
+
 from config.driver_config import DriverConfig
 from page.LoginPage import LonginPage
+from common.report_add_img import add_img_2_report
 
 class TestLogin:
-
+    @pytest.mark.login
+    @allure.feature("登录")
+    @allure.description("登录")
     def test_login(self,driver):
-        # driver = DriverConfig().driver_config()
-        LonginPage().login(driver,"jay")
-        sleep(3)
-        # # 退出浏览器
-        # driver.quit()
+        '''使用错误的账号登录'''
+
+        with allure.step("登录"):
+            LonginPage().login(driver,"aaa")
+            sleep(3)
+            add_img_2_report(driver,"登录")

@@ -5,5 +5,8 @@ user:
   william:
     username: william
     password: 123456
+  aaa:
+    username: william
+    password: william
 
 url: http://www.tcpjwtester.top
