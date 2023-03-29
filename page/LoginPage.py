@@ -1,6 +1,7 @@
 # 开发时间：2023/3/2 22:51
 import time
 
+import requests
 from selenium.webdriver.common.by import By
 from base.loginBase import LoginBase
 from base.ObjectMap import ObjectMap
@@ -59,13 +60,41 @@ class LonginPage(LoginBase, ObjectMap):
             log.info("验证码为：" + identify)
             input_captcha_xpath = self.input_captcha()
             log.info("填入验证码")
-            self.element_fill_value(driver,By.XPATH,input_captcha_xpath,identify)
+            self.element_fill_value(driver, By.XPATH, input_captcha_xpath, identify)
             time.sleep(3)
         username, password = GetConf().get_username_password(user)
         self.login_input_value(driver, "用户名", username)
         self.login_input_value(driver, "密码", password)
         self.click_login(driver, "登录")
         self.assert_login_success(driver)
+
+    def api_login(self, driver, user):
+        '''
+        通过api登录
+        :param driver:
+        :param user:
+        :return:
+        '''
+        log.info("跳转登录页")
+        self.element_to_url(driver, "/login")
+        username, password = GetConf().get_username_password(user)
+        log.info("用户名" + str(username))
+        log.info("密码" + str(password))
+        url = GetConf().get_url()
+        data = {
+            "user": username,
+            "password": password
+        }
+        log.info("通过api登录")
+        res = requests.post(url + "/api/user/login", json=data)
+        token = res.json()["data"]["token"]
+        js_script = "window.sessionStorage.setItem('token','%s');" % token
+        log.info("将token写入sessionstrage")
+        # 执行js语句
+        driver.execute_script(js_script)
+        time.sleep(2)
+        log.info("跳转主页")
+        self.element_to_url(driver, "/")
 
     def login_assert(self, driver, img_name):
         '''
