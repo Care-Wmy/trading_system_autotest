@@ -10,3 +10,10 @@ user:
     password: william
 
 url: http://www.tcpjwtester.top
+
+mysql:
+    db: test_mysql
+    host: 190.168.2.191
+    password: 123456
+    port: 3306
+    user: root
