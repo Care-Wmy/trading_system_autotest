@@ -1,5 +1,9 @@
 # 开发时间：2023/3/1 22:56
+import datetime
 import os
+# 获取当前时间 转换str
+def get_now_date_time_str():
+    return datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 
 def get_project_path():
